@@ -1,0 +1,41 @@
+#!/bin/bash
+
+echo ">>> Проверка доступных дисков"
+lsblk
+read -p "Убедитесь, что диски /dev/sdb, /dev/sdc и /dev/sdd свободны. Нажмите Enter для продолжения..."
+
+echo ">>> Создание RAID 5 массива из 3-х устройств"
+mdadm --create /dev/md0 --level=5 --raid-devices=3 /dev/sd[b-d] --metadata=1.2 --verbose
+sleep 3
+cat /proc/mdstat
+
+echo ">>> Сохранение конфигурации RAID"
+mdadm --detail --scan >> /etc/mdadm.conf
+
+echo ">>> Создание раздела на RAID массиве"
+parted -s /dev/md0 mklabel gpt
+parted -s /dev/md0 mkpart primary ext4 0% 100%
+
+echo ">>> Форматирование файловой системы ext4"
+mkfs.ext4 /dev/md0p1
+
+echo ">>> Создание точки монтирования и добавление в /etc/fstab"
+mkdir -p /raid5
+echo '/dev/md0p1  /raid5  ext4  defaults  0  0' >> /etc/fstab
+mount -a
+
+echo ">>> Установка и настройка NFS сервера"
+apt-get update
+apt-get install -y nfs-kernel-server
+
+mkdir -p /raid5/nfs
+chown nobody:nogroup /raid5/nfs
+chmod 777 /raid5/nfs
+
+echo "/raid5/nfs 192.168.1.0/24(rw,sync,no_subtree_check)" >> /etc/exports
+exportfs -a
+exportfs -v
+
+systemctl enable --now nfs-server
+
+echo ">>> RAID 5 и NFS настроены. Рекомендуется проверить подключение с клиентских машин."
