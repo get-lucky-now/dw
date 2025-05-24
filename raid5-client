@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo ">>> Установка необходимых компонентов"
+apt-get update
+apt-get install -y nfs-common
+
+echo ">>> Создание точки монтирования"
+mkdir -p /mnt/nfs
+
+echo ">>> Добавление записи в /etc/fstab"
+grep -q '192.168.1.10:/raid5/nfs' /etc/fstab || \
+  echo '192.168.1.10:/raid5/nfs  /mnt/nfs  nfs  defaults  0  0' >> /etc/fstab
+
+echo ">>> Монтирование NFS раздела"
+mount -a
+mount -v | grep /mnt/nfs
+
+echo ">>> Проверка записи"
+if touch /mnt/nfs/testfile; then
+    echo ">>> Успешно: файл создан"
+else
+    echo ">>> Ошибка записи файла. Проверьте доступность сервера или права."
+    exit 1
+fi
