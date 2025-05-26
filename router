@@ -4,7 +4,7 @@
 hostnamectl set-hostname isp.au-team.irpo
 
 # Создаем директории для интерфейсов
-mkdir -p /etc/net/ifaces/{ens19,ens20}
+mkdir -p /etc/net/ifaces/{ens36,ens37}
 
 # Настраиваем интерфейс ens36 (статический IP)
 cat <<EOF > /etc/net/ifaces/ens36/options
