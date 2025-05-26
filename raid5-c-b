@@ -2,13 +2,12 @@
 
 # === full-backup-with-versioning.sh ===
 # Назначение: Автоматическое резервное копирование с Linux-клиента на сервер с RAID, с версионированием
-# Подходит как основная реализация дипломной практики
 # Требуется: inotify-tools, доступ по SSH к серверу
 
 # Параметры
 SOURCE="/home/user/"
-DEST="user@192.168.1.10:/backup/client-linux/"
-VERSION_DIR="user@192.168.1.10:/backup/versions/client-linux/"
+DEST="user@192.168.1.10:/raid5/backup/client-linux/"
+VERSION_DIR="user@192.168.1.10:/raid5/versions/client-linux/"
 
 # Первый запуск — полное резервное копирование
 echo "[*] Выполняется полное резервное копирование..."
@@ -24,7 +23,7 @@ inotifywait -mrq -e modify,create,delete,move "$SOURCE" | while read change; do
 
     # Сохранение текущей версии перед синхронизацией
     echo "[*] Сохраняем текущую версию: ${TIMESTAMP}"
-    ssh user@192.168.1.10 "cp -a /backup/client-linux /backup/versions/client-linux-${TIMESTAMP}"
+    ssh user@192.168.1.10 "cp -a /raid5/backup/client-linux /raid5/versions/client-linux-${TIMESTAMP}"
 
     # Синхронизация актуального состояния
     echo "[*] Выполняется rsync..."
