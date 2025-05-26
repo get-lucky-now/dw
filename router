@@ -38,3 +38,17 @@ service network restart
 # Добавляем IPTABLES в автозапуск
 systemctl enable iptables
 systemctl start iptables
+
+cat <<EOF > /tmp/sshd_new_top
+Port 22
+PermitRootLogin yes
+#AllowUsers net_admin
+#MaxAuthTries 2
+EOF
+
+cat /etc/openssh/sshd_config >> /tmp/sshd_new_top
+mv /tmp/sshd_new_top /etc/openssh/sshd_config
+
+# Перезапускаем сервис SSHD
+systemctl enable --now sshd.service
+systemctl restart sshd.service
