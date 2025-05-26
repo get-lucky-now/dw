@@ -37,3 +37,5 @@ mv /tmp/sshd_new_top /etc/openssh/sshd_config
 # Перезапускаем сервис SSHD
 systemctl enable --now sshd.service
 systemctl restart sshd.service
+
+systemctl restart network
