@@ -23,7 +23,7 @@ inotifywait -mrq -e modify,create,delete,move "$SOURCE" | while read change; do
 
     # Сохранение текущей версии перед синхронизацией
     echo "[*] Сохраняем текущую версию: ${TIMESTAMP}"
-    ssh user@192.168.1.10 "cp -a /raid5/backup/client-linux /raid5/versions/client-linux-${TIMESTAMP}"
+    ssh user@192.168.1.10 "cp -a /raid10/backup/client-linux /raid10/versions/client-linux-${TIMESTAMP}"
 
     # Синхронизация актуального состояния
     echo "[*] Выполняется rsync..."
