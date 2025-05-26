@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # === raid-server-backup-setup.sh ===
-# Назначение: Настройка RAID 5 и подготовка структуры для резервного копирования с клиентских машин
+# Назначение: Настройка RAID 10 и подготовка структуры для резервного копирования с клиентских машин
 # Используется: rsync по SSH, безопасный доступ, без экспорта NFS
 # Требуется: mdadm, rsync, openssh-server
 
@@ -9,14 +9,14 @@ echo ">>> Форматирование RAID-массива в ext4"
 mkfs.ext4 /dev/md0p1
 
 echo ">>> Создание точек монтирования и структуры каталогов для резервного копирования"
-mkdir -p /raid5
-mkdir -p /raid5/backup/client-linux
-mkdir -p /raid5/backup/client-win
-mkdir -p /raid5/versions/client-linux
-mkdir -p /raid5/versions/client-win
+mkdir -p /raid10
+mkdir -p /raid10/backup/client-linux
+mkdir -p /raid10/backup/client-win
+mkdir -p /raid10/versions/client-linux
+mkdir -p /raid10/versions/client-win
 
 echo ">>> Добавление RAID-массива в /etc/fstab и монтирование"
-echo '/dev/md0p1  /raid5  ext4  defaults  0  0' >> /etc/fstab
+echo '/dev/md0p1  /raid10  ext4  defaults  0  0' >> /etc/fstab
 mount -a
 
 echo ">>> Установка rsync и SSH-сервера для безопасной передачи данных"
@@ -27,13 +27,13 @@ echo ">>> Включение и запуск SSH-сервиса"
 systemctl enable --now ssh
 
 echo ">>> Установка прав доступа"
-chown -R root:root /raid5
-chmod -R 750 /raid5
-chmod -R 770 /raid5/backup
-chmod -R 770 /raid5/versions
+chown -R root:root /raid10
+chmod -R 750 /raid10
+chmod -R 770 /raid10/backup
+chmod -R 770 /raid10/versions
 
 echo ">>> Сервер RAID готов для приёма резервных копий от клиентов (rsync по SSH)."
 echo "Каталоги:"
-echo "  /raid5/backup/client-linux"
-echo "  /raid5/backup/client-win"
-echo "  /raid5/versions/..."
+echo "  /raid10/backup/client-linux"
+echo "  /raid10/backup/client-win"
+echo "  /raid10/versions/..."
