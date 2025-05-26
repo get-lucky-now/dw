@@ -21,6 +21,9 @@ EOF
 echo '192.168.1.10/26' > /etc/net/ifaces/ens33/ipv4address
 echo 'default via 192.168.1.1' > /etc/net/ifaces/ens33/ipv4route
 
+# Перезапускаем сеть
+service network restart
+
 cat <<EOF > /tmp/sshd_new_top
 Port 22
 PermitRootLogin yes
@@ -34,6 +37,3 @@ mv /tmp/sshd_new_top /etc/openssh/sshd_config
 # Перезапускаем сервис SSHD
 systemctl enable --now sshd.service
 systemctl restart sshd.service
-
-# Перезапускаем сеть
-service network restart
