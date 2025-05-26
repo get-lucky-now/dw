@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Переименовываем машину
+hostnamectl set-hostname backup-server.abs.irpo
+
 # Настраиваем интерфейс ens19 (статический IP)
 cat <<EOF > /etc/net/ifaces/ens19/options
 BOOTPROTO=static
