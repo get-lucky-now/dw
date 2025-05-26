@@ -6,8 +6,8 @@
 
 # Параметры
 SOURCE="/home/user/"
-DEST="user@192.168.1.10:/raid5/backup/client-linux/"
-VERSION_DIR="user@192.168.1.10:/raid5/versions/client-linux/"
+DEST="user@192.168.1.10:/raid10/backup/client-linux/"
+VERSION_DIR="user@192.168.1.10:/raid10/versions/client-linux/"
 
 # Первый запуск — полное резервное копирование
 echo "[*] Выполняется полное резервное копирование..."
