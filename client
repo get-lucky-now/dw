@@ -1,5 +1,11 @@
 #!/bin/bash
 
+apt-get install openssh-server inotify-tools
+touch /home/user/ruby
+cat <<EOF > /home/user/ruby
+hello
+EOF
+
 # Переименовываем машину
 hostnamectl set-hostname client.abs.irpo
 
@@ -39,3 +45,5 @@ systemctl enable --now sshd.service
 systemctl restart sshd.service
 
 systemctl restart network
+
+ls /home/user/
