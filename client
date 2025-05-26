@@ -5,6 +5,14 @@ hostnamectl set-hostname client.abs.irpo
 
 # Настраиваем интерфейс ens33 (статический IP)
 cat <<EOF > /etc/net/ifaces/ens33/options
+#BOOTPROTO=dhcp
+#TYPE=eth
+#CONFIG_WIRELESS=no
+#SYSTEMD_BOOTPROTO=dhcp4
+#CONFIG_IPV4=yes
+#DISABLED=no
+#NM_CONTROLLED=no
+#SYSTEMD_CONTROLLED=no
 BOOTPROTO=static
 TYPE=eth
 EOF
