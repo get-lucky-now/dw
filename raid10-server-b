@@ -14,6 +14,7 @@ mdadm --create /dev/md0 --level=10 --raid-devices=4 /dev/sd[b-e]
 
 # Просмотр состояния RAID массива
 cat /proc/mdstat
+read -p "Нажми Enter, чтобы продолжить..."
 
 # Сохранение информации о массиве
 mdadm --detail -scan > /etc/mdadm.conf
