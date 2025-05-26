@@ -6,21 +6,21 @@ hostnamectl set-hostname isp.au-team.irpo
 # Создаем директории для интерфейсов
 mkdir -p /etc/net/ifaces/{ens19,ens20}
 
-# Настраиваем интерфейс ens19 (статический IP)
-cat <<EOF > /etc/net/ifaces/ens19/options
+# Настраиваем интерфейс ens36 (статический IP)
+cat <<EOF > /etc/net/ifaces/ens36/options
 BOOTPROTO=static
 TYPE=eth
 EOF
 
-# Настраиваем интерфейс ens20 (статический IP)
-cat <<EOF > /etc/net/ifaces/ens20/options
+# Настраиваем интерфейс ens37 (статический IP)
+cat <<EOF > /etc/net/ifaces/ens37/options
 BOOTPROTO=static
 TYPE=eth
 EOF
 
 # Устанавливаем статические адреса для интерфейсов
-echo '192.168.1.1/26' > /etc/net/ifaces/ens19/ipv4address
-echo '192.168.2.1/28' > /etc/net/ifaces/ens20/ipv4address
+echo '192.168.1.1/26' > /etc/net/ifaces/ens36/ipv4address
+echo '192.168.2.1/28' > /etc/net/ifaces/ens37/ipv4address
 
 # Включаем форвардинг пакетов
 sed -i 's/net.ipv4.ip_forward.*/net.ipv4.ip_forward = 1/' /etc/net/sysctl.conf
