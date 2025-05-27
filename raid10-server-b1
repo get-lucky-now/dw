@@ -35,6 +35,7 @@ mkdir -p /raid10/versions/client-linux
 mkdir -p /raid10/versions/client-win
 
 echo ">>> Добавление RAID-массива в /etc/fstab и монтирование"
-echo '/dev/md0p1  /raid10  ext4  defaults  0  0' >> /etc/fstab
+#echo '/dev/md0p1  /raid10  ext4  defaults  0  0' >> /etc/fstab
+echo '/dev/md0  /raid10  ext4  defaults  0  0' >> /etc/fstab
 read -p "Нажми Enter, чтобы продолжить..."
 
