@@ -1,1 +1,18 @@
+#!/bin/bash
+# incremental-backup-hourly.sh — запуск по расписанию (раз в час)
 
+SOURCE="/home/user/"
+DEST="user@192.168.1.10:/raid10/backup/client-linux/"
+
+# Получаем временную метку
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+
+# Сохраняем текущую версию данных на сервере
+echo "[*] Сохраняем текущую версию на сервере..."
+ssh user@192.168.1.10 "cp -a /raid10/backup/client-linux /raid10/versions/client-linux-${TIMESTAMP}"
+
+# Синхронизируем актуальные изменения
+echo "[*] Выполняется инкрементальное резервное копирование..."
+rsync -avz "$SOURCE" "$DEST"
+
+echo "[*] Завершено."
