@@ -11,6 +11,7 @@ read -p "Нажми Enter, чтобы продолжить..."
 
 # Создание RAID10 массива
 mdadm --create /dev/md0 --level=10 --raid-devices=4 /dev/sd[b-e]
+#mdadm --create /dev/md0 --level=10 --raid-devices=4 /dev/sd[c-f]
 
 # Просмотр состояния RAID массива
 cat /proc/mdstat
