@@ -26,6 +26,13 @@ chmod -R 750 /raid10
 chmod -R 770 /raid10/backup
 chmod -R 770 /raid10/versions
 
+chown -R root:backup /raid10/backup/client-linux
+chmod -R 770 /raid10/backup/client-linux
+usermod -aG backup user
+
+chown -R root:backup /raid10/backup
+chmod -R 770 /raid10/backup
+
 echo ">>> Сервер RAID готов для приёма резервных копий от клиентов (rsync по SSH)."
 echo "Каталоги:"
 echo "  /raid10/backup/client-linux"
