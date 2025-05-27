@@ -27,6 +27,8 @@ echo ">>> Форматирование RAID-массива в ext4"
 #mkfs.ext4 /dev/md0p1
 mkfs.ext4 /dev/md0
 
+mkdir -p /raid10
+
 echo ">>> Добавление RAID-массива в /etc/fstab и монтирование"
 #echo '/dev/md0p1  /raid10  ext4  defaults  0  0' >> /etc/fstab
 echo '/dev/md0  /raid10  ext4  defaults  0  0' >> /etc/fstab
