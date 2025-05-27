@@ -35,23 +35,5 @@ mkdir -p /raid10/versions/client-win
 
 echo ">>> Добавление RAID-массива в /etc/fstab и монтирование"
 echo '/dev/md0p1  /raid10  ext4  defaults  0  0' >> /etc/fstab
-mount -a
+read -p "Нажми Enter, чтобы продолжить..."
 
-echo ">>> Установка rsync и SSH-сервера для безопасной передачи данных"
-apt update
-apt install -y rsync openssh-server
-
-echo ">>> Включение и запуск SSH-сервиса"
-systemctl enable --now ssh
-
-echo ">>> Установка прав доступа"
-chown -R root:root /raid10
-chmod -R 750 /raid10
-chmod -R 770 /raid10/backup
-chmod -R 770 /raid10/versions
-
-echo ">>> Сервер RAID готов для приёма резервных копий от клиентов (rsync по SSH)."
-echo "Каталоги:"
-echo "  /raid10/backup/client-linux"
-echo "  /raid10/backup/client-win"
-echo "  /raid10/versions/..."
