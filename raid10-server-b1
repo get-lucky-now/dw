@@ -27,18 +27,6 @@ echo ">>> Форматирование RAID-массива в ext4"
 #mkfs.ext4 /dev/md0p1
 mkfs.ext4 /dev/md0
 
-echo ">>> Создание точек монтирования и структуры каталогов для резервного копирования"
-mkdir -p /raid10
-mkdir -p /raid10/backup/client-linux
-mkdir -p /raid10/backup/client-win
-mkdir -p /raid10/versions/client-linux
-mkdir -p /raid10/versions/client-win
-
-groupadd backup
-usermod -aG backup user
-chown -R root:backup /raid10/backup/client-linux
-chmod -R 770 /raid10/backup/client-linux
-
 echo ">>> Добавление RAID-массива в /etc/fstab и монтирование"
 #echo '/dev/md0p1  /raid10  ext4  defaults  0  0' >> /etc/fstab
 echo '/dev/md0  /raid10  ext4  defaults  0  0' >> /etc/fstab
