@@ -18,7 +18,7 @@ cat /proc/mdstat
 read -p "Нажми Enter, чтобы продолжить..."
 
 # Сохранение информации о массиве
-mdadm --detail -scan > /etc/mdadm.conf
+mdadm --detail --scan >> /etc/mdadm.conf
 
 # Форматирование раздела
 #fdisk /dev/md0 <<< "$(printf '%s\n' n p 1 2048  w)"
