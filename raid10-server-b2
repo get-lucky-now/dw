@@ -30,4 +30,5 @@ echo ">>> Сервер RAID готов для приёма резервных к
 echo "Каталоги:"
 echo "  /raid10/backup/client-linux"
 echo "  /raid10/backup/client-win"
-echo "  /raid10/versions/..."
+echo "  /raid10/versions/client-linux"
+echo "  /raid10/versions/client-win"
