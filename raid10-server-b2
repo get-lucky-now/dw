@@ -1,0 +1,22 @@
+#!/bin/bash
+
+mount -a
+
+echo ">>> Установка rsync и SSH-сервера для безопасной передачи данных"
+apt update
+apt install -y rsync openssh-server
+
+echo ">>> Включение и запуск SSH-сервиса"
+systemctl enable --now ssh
+
+echo ">>> Установка прав доступа"
+chown -R root:root /raid10
+chmod -R 750 /raid10
+chmod -R 770 /raid10/backup
+chmod -R 770 /raid10/versions
+
+echo ">>> Сервер RAID готов для приёма резервных копий от клиентов (rsync по SSH)."
+echo "Каталоги:"
+echo "  /raid10/backup/client-linux"
+echo "  /raid10/backup/client-win"
+echo "  /raid10/versions/..."
