@@ -3,8 +3,8 @@
 mount -a
 
 echo ">>> Установка rsync и SSH-сервера для безопасной передачи данных"
-apt update
-apt install -y rsync openssh-server
+#apt update
+#apt install -y rsync openssh-server
 
 echo ">>> Включение и запуск SSH-сервиса"
 systemctl enable --now ssh
