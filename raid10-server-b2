@@ -21,7 +21,7 @@ echo ">>> Включение и запуск SSH-сервиса"
 systemctl enable --now ssh
 
 echo ">>> Установка прав доступа"
-chown -R root:root /raid10
+chown -R root:backup /raid10
 chmod -R 750 /raid10
 chmod -R 770 /raid10/backup
 chmod -R 770 /raid10/versions
