@@ -1,0 +1,9 @@
+#!/bin/bash
+# raid10-c-fullb — запуск один раз вручную для полного копирования
+
+SOURCE="/home/user/"
+DEST="user@192.168.1.10:/raid10/backup/client-linux/"
+
+echo "[*] Выполняется полное начальное резервное копирование..."
+rsync -avz "$SOURCE" "$DEST"
+echo "[*] Завершено."
