@@ -1,5 +1,10 @@
 #!/bin/bash
 
+wget https://raw.githubusercontent.com/get-lucky-now/dw/main/raid10-server-b1
+wget https://raw.githubusercontent.com/get-lucky-now/dw/main/raid10-server-b2
+chmod +x raid10-server-b1
+chmod +x raid10-server-b2
+
 # Переименовываем машину
 hostnamectl set-hostname backup-server.abs.irpo
 
@@ -8,7 +13,6 @@ useradd user -u 1010
 id user
 echo " Напоминание: resu"
 passwd user
-
 
 # Настраиваем интерфейс ens33 (статический IP)
 cat <<EOF > /etc/net/ifaces/ens33/options
