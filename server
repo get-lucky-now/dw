@@ -1,5 +1,6 @@
 #!/bin/bash
 
+apt install -y rsync openssh-server
 wget https://raw.githubusercontent.com/get-lucky-now/dw/main/raid10-server-b1
 wget https://raw.githubusercontent.com/get-lucky-now/dw/main/raid10-server-b2
 chmod +x raid10-server-b1
