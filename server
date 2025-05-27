@@ -3,6 +3,13 @@
 # Переименовываем машину
 hostnamectl set-hostname backup-server.abs.irpo
 
+# Создаем нового пользователя
+useradd user -u 1010
+id user
+echo " Напоминание: resu"
+passwd user
+
+
 # Настраиваем интерфейс ens33 (статический IP)
 cat <<EOF > /etc/net/ifaces/ens33/options
 #BOOTPROTO=dhcp
