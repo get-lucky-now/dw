@@ -6,7 +6,8 @@ chmod +x raid10-c-fullb
 chmod +x raid10-c-s
 
 apt-get update
-apt-get install openssh-server inotify-tools -y
+#apt-get install openssh-server inotify-tools -y
+apt-get install openssh-server  rsync -y
 touch /home/user/ruby
 cat <<EOF > /home/user/ruby
 hello
