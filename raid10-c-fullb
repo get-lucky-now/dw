@@ -5,5 +5,5 @@ SOURCE="/home/user/"
 DEST="user@192.168.1.10:/raid10/backup/client-linux/"
 
 echo "[*] Выполняется полное начальное резервное копирование..."
-rsync -avz "$SOURCE" "$DEST"
+rsync -avz "$SOURCE" "$DEST" || { echo "[!] Ошибка rsync. Резервное копирование не выполнено."; exit 1; }
 echo "[*] Завершено."
