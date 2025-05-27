@@ -2,6 +2,17 @@
 
 mount -a
 
+echo ">>> Создание точек монтирования и структуры каталогов для резервного копирования"
+mkdir -p /raid10/backup/client-linux
+mkdir -p /raid10/backup/client-win
+mkdir -p /raid10/versions/client-linux
+mkdir -p /raid10/versions/client-win
+
+groupadd backup
+usermod -aG backup user
+chown -R root:backup /raid10/backup/client-linux
+chmod -R 770 /raid10/backup/client-linux
+
 echo ">>> Установка rsync и SSH-сервера для безопасной передачи данных"
 #apt update
 #apt install -y rsync openssh-server
