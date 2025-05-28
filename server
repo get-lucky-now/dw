@@ -37,8 +37,10 @@ echo 'default via 192.168.1.1' > /etc/net/ifaces/ens33/ipv4route
 service network restart
 
 cat <<EOF > /tmp/sshd_new_top
-Port 22
-PermitRootLogin yes
+PubkeyAuthentication yes
+AuthorizedKeysFile %h/.ssh/authorized_keys
+PermitRootLogin no
+PasswordAuthentication yes
 #AllowUsers net_admin
 #MaxAuthTries 2
 EOF
