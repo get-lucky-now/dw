@@ -6,7 +6,7 @@ apt-get install openssh-server -y
 hostnamectl set-hostname isp.au-team.irpo
 
 # Создаем директории для интерфейсов
-mkdir -p /etc/net/ifaces/{ens36,ens37}
+mkdir -p /etc/net/ifaces/{ens36,ens37,ens38}
 
 # Настраиваем интерфейс ens36 (статический IP)
 cat <<EOF > /etc/net/ifaces/ens36/options
