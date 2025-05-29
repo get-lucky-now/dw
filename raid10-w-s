@@ -1,0 +1,18 @@
+#!/bin/bash
+
+SOURCE="/mnt/c/Users/user/"
+DEST="user@192.168.1.10:/raid10/backup/client-win/"
+VERSIONS="/raid10/versions/client-win"
+
+# Метка времени
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+
+# Сохраняем версию на сервере
+echo "[*] Сохраняем текущую версию перед синхронизацией..."
+ssh user@192.168.1.10 "cp -a $DEST ${VERSIONS}-${TIMESTAMP}"
+
+# Синхронизируем актуальное состояние
+echo "[*] Выполняется rsync..."
+rsync -avz "$SOURCE" "$DEST"
+
+echo "[*] Завершено."
