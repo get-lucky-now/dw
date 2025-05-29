@@ -1,0 +1,8 @@
+#!/bin/bash
+# Полное резервное копирование Windows-директории в RAID10 на сервере
+SOURCE="/mnt/c/Users/user/"
+DEST="user@192.168.1.10:/raid10/backup/client-win/"
+
+echo "[*] Выполняется полное резервное копирование Windows-каталога..."
+rsync -avz "$SOURCE" "$DEST" || { echo "[!] Ошибка rsync. Резервное копирование не выполнено."; exit 1; }
+echo "[*] Завершено."
